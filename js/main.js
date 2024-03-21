@@ -35,7 +35,7 @@ function changeWeatherAndCityInDOM(city) {
 
     data.then(data => {
         elements.city.textContent = data.name;
-        elements.weatherValue.textContent = `${(Number(data.main.temp) - nullKelvin).toFixed(2)}°`; //
+        elements.weatherValue.textContent = `${(Number(data.main.temp) - nullKelvin).toFixed(1)}°`; //
     });
 }
 
