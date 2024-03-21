@@ -8,7 +8,7 @@ const elements = {
 const nullKelvin = 273.15;
 
 function getResponseFromServer(nameCity) {
-    const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
+    const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';
     const cityName = nameCity;
     const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f'; // этот ключ имеет ограничение в кол-ве запросов, если будут ошибки - придется сгенерировать новый или спросить в чате
     const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&lang=ru`;
