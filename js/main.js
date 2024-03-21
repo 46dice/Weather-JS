@@ -41,5 +41,5 @@ function changeWeatherAndCityInDOM(city) {
 
 elements.form.addEventListener('submit', (e) => {
     e.preventDefault();
-    changeWeatherAndCityInDOM(elements.inputCity.value);
+    changeWeatherAndCityInDOM(elements.inputCity.value.replace(/\s/g, ""));
 })
