@@ -12,7 +12,8 @@ const elements = {
     allCitys: document.querySelectorAll('.locations__list-item'),
 };
 
-const dataUI = [];
+const dataUI = ["Екатеринбург"];
+changeWeatherAndCityInDOM(dataUI[0]);
 
 function getResponseFromServer(nameCity) {
     const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';
