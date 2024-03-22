@@ -106,7 +106,8 @@ elements.btnLove.addEventListener('click', handleAddCityInFavourites);
 
 elements.form.addEventListener('submit', (e) => {
     e.preventDefault();
-    changeWeatherAndCityInDOM(elements.inputCity.value);
+    const inputValue = elements.inputCity.value.replace(/\s/g, "");
+    changeWeatherAndCityInDOM(inputValue);
     elements.form.reset();
 });
 
