@@ -40,7 +40,6 @@ body {
         align-items: normal;
         justify-content: normal;
         padding-top: 20px;
-
     }
 }
 
@@ -107,11 +106,11 @@ body {
         }
 
         &:focus {
-            border: 1px solid red;
+            background-color: rgb(192, 191, 190);
         }
 
         &:active {
-            border: 1px solid red;
+            background-color: rgb(228, 227, 226);
             opacity: 1;
         }
     }
@@ -121,8 +120,8 @@ body {
     grid-column: 3 span;
     align-items: center;
     flex-direction: column;
-    gap: 45px;
-    padding-bottom: 10px;
+    gap: 0;
+    padding-bottom: 3px;
     border-right: none;
 
     @include small-tablet {
@@ -136,6 +135,10 @@ body {
         justify-content: space-between;
         padding-left: 15px;
         padding-right: 15px;
+
+        @include small-tablet {
+            align-items: center;
+        }
     }
 
     &__value {
@@ -145,7 +148,7 @@ body {
         padding-top: 15px;
 
         @include small-tablet {
-            font-size: 40px;
+            font-size: 45px;
         }
     }
 
@@ -153,21 +156,54 @@ body {
         font-size: 24px;
 
         @include small-tablet {
-            font-size: 18px;
+            font-size: 22px;
         }
     }
 
-    & img {
-        @include small-tablet {
-            width: 70px;
-            height: 60px;
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        border-radius: 50%;
+        flex-direction: column;
+        gap: 5px;
+
+        &-add {
+            border-radius: 10px;
+            border: 1px solid red;
+            padding: 3px 8px;
         }
+
+        & svg {
+            @include small-tablet {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &:hover {
+            & svg path {
+                fill: red;
+                stroke: red;
+            }
+        }
+
+        &:active {
+            background-color: rgb(204, 204, 204);
+        }
+    }
+
+    &__description {
+        padding-left: 10px;
+        align-self: flex-start;
+        text-transform: capitalize;
     }
 }
 
 .locations {
     grid-column: 3 span;
-    grid-template-rows: 68px 1fr;
+    grid-template-rows: 85px 1fr;
 
     &__list {
         padding-left: 25px;
@@ -175,18 +211,77 @@ body {
         padding-bottom: 10px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 14px;
         border-top: none;
         overflow-y: auto;
         height: 204px;
+
+        @include small-tablet {
+            padding-left: 10%;
+        }
+    }
+
+    &__list-item {
+        cursor: pointer;
+        align-items: center;
+        border-bottom: 1px solid #f7caca;
+        max-width: 170px;
+        transition: color 0.3s ease;
+        position: relative;
+
+        @include small-tablet {
+            max-width: 80%;
+        }
+
+        &:hover {
+            color: #f8a9a9;
+        }
+
+        &:active {
+            color: #f8a9a9;
+        }
+    }
+
+    &__list-item-city {
+        padding-right: 50%;
+
+        @include small-tablet {
+            font-size: 20px;
+        }
+    }
+}
+
+.btn-delete {
+    position: absolute;
+    top: -4px;
+    z-index: 5;
+    right: -3px;
+    color: rgb(248, 108, 53);
+    padding: 3px;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+
+    &:hover .locations__list-item {
+        color: rgb(20, 20, 20);
+    }
+
+    &:hover {
+        background-color: #fff;
+    }
+
+    &:active {
+        background-color: #fff;
     }
 }
 
 .title {
     &__title {
         padding: 25px;
+        display: flex;
+        align-items: center;
 
         @include small-tablet {
+            display: block;
             font-size: 18px;
             text-align: center;
             text-decoration: underline;
