@@ -73,7 +73,7 @@ body {
 }
 @media (max-width: 768px) {
   .weath__inner {
-    height: 600px;
+    height: 640px;
     margin: 0 auto;
   }
 }
@@ -298,6 +298,13 @@ body {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border-radius: 3px;
+  font-size: 15px;
+}
+@media (max-width: 768px) {
+  .btn-delete {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 .btn-delete:hover .locations__list-item {
   color: rgb(20, 20, 20);
