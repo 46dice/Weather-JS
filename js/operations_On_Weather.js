@@ -39,8 +39,18 @@ function changeTempAndDateInUI(i, data, element) {
     const hours = new Date(dt).getHours();
     const minutes = new Date(dt).getMinutes();
     element.time.textContent = `${hours}:${minutes}0`;
-    element.temperature.textContent = `${(data.list[i].main.temp).toFixed()}`;
-    element.feelsLike.textContent = `${(data.list[i].main.feels_like).toFixed()}`;
+
+    const feelsLikeTemperature = data.list[i].main.feels_like;
+    const temperature = data.list[i].main.temp;
+    
+    if (feelsLikeTemperature > 0 && temperature > 0) {
+        element.temperature.textContent = `+${(data.list[i].main.temp).toFixed()}`;
+        element.feelsLike.textContent = `+${(data.list[i].main.feels_like).toFixed()}`;
+    } else {
+        element.temperature.textContent = `${(data.list[i].main.temp).toFixed()}`;
+        element.feelsLike.textContent = `${(data.list[i].main.feels_like).toFixed()}`;
+    }
+
     element.img.src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@4x.png`;
 }
 export function changeTimeOfValueAndTemperature(city) {
@@ -51,8 +61,8 @@ export function changeTimeOfValueAndTemperature(city) {
         const sunriseMinutes = (new Date(data.city.sunrise * 1000)).getMinutes();
         const sunsetHours = (new Date(data.city.sunset * 1000)).getHours();
         const sunsetMinutes = (new Date(data.city.sunset * 1000)).getMinutes();
-        const feelsLikeTemperature = data.list[0].main.feels_like;
 
+        const feelsLikeTemperature = data.list[0].main.feels_like;
         if (feelsLikeTemperature > 0) {
             elements.extraElements.feelsLike.textContent = `+${feelsLikeTemperature.toFixed()}°`;
         }
