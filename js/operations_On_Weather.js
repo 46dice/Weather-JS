@@ -42,7 +42,7 @@ function changeTempAndDateInUI(i, data, element) {
 
     const feelsLikeTemperature = data.list[i].main.feels_like;
     const temperature = data.list[i].main.temp;
-    
+
     if (feelsLikeTemperature > 0 && temperature > 0) {
         element.temperature.textContent = `+${(data.list[i].main.temp).toFixed()}`;
         element.feelsLike.textContent = `+${(data.list[i].main.feels_like).toFixed()}`;
@@ -64,7 +64,9 @@ export function changeTimeOfValueAndTemperature(city) {
 
         const feelsLikeTemperature = data.list[0].main.feels_like;
         if (feelsLikeTemperature > 0) {
-            elements.extraElements.feelsLike.textContent = `+${feelsLikeTemperature.toFixed()}°`;
+            elements.extraElements.feelsLike.textContent = `+${feelsLikeTemperature.toFixed()}°`; //+t°
+        } else {
+            elements.extraElements.feelsLike.textContent = `${feelsLikeTemperature.toFixed()}°`; //-t°
         }
 
         elements.extraElements.sunrise.textContent = `${sunriseHours}:${sunriseMinutes}`;
