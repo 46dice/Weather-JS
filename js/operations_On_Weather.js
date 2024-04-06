@@ -1,12 +1,9 @@
 import { elements } from "./elementsUI.js";
 import { getResponseFromServer, getValueOfTimeFromServer } from "./request.js";
 
-let dataUI = ["Екатеринбург", "Советский"];
-changeWeatherAndCityInDOM(dataUI[0]);
-changeTimeOfValueAndTemperature(dataUI[0]);
-renderHistory(elements.locationsList);
+export let dataUI = [];
 
-function renderHistory(list) {
+export function renderHistory(list) {
     list.innerHTML = "";
 
     dataUI.forEach(city => {
@@ -34,7 +31,7 @@ export function changeWeatherAndCityInDOM(city) {
     });
 }
 
-function changeTempAndDateInUI(i, data, element) {
+export function changeTempAndDateInUI(i, data, element) {
     const dt = data.list[i].dt * 1000;
     const hours = new Date(dt).getHours();
     const minutes = new Date(dt).getMinutes();
@@ -53,6 +50,7 @@ function changeTempAndDateInUI(i, data, element) {
 
     element.img.src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@4x.png`;
 }
+
 export function changeTimeOfValueAndTemperature(city) {
     const data = getValueOfTimeFromServer(city);
 
@@ -81,7 +79,6 @@ export function deleteCityInFavourites(city) {
     const newData = dataUI.filter(item => item !== city)
     dataUI = newData;
     renderHistory(elements.locationsList);
-    console.log(dataUI);
 }
 
 export function addCityInFavourites(city) {
@@ -92,5 +89,4 @@ export function addCityInFavourites(city) {
     newData.push(city.textContent);
     dataUI.push(...newData);
     renderHistory(elements.locationsList);
-    console.log(dataUI);
 }

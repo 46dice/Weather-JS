@@ -1,5 +1,6 @@
 import { elements } from "./elementsUI.js";
-import { changeWeatherAndCityInDOM, deleteCityInFavourites, addCityInFavourites, changeTimeOfValueAndTemperature } from "./operations_On_Weather.js";
+import { dataUI, changeWeatherAndCityInDOM, deleteCityInFavourites, addCityInFavourites, changeTimeOfValueAndTemperature } from "./operations_On_Weather.js";
+import { saveToLocalStorageMainCity, saveToLocalStorageFavoriteCityes } from "./localstorage.js";
 
 elements.locationsList.addEventListener('click', (event) => {
     const target = event.target;
@@ -19,6 +20,7 @@ elements.locationsList.addEventListener('click', (event) => {
 
 function handleAddCityInFavourites() {
     addCityInFavourites(elements.city);
+    saveToLocalStorageFavoriteCityes(dataUI);
 }
 
 elements.btnLove.addEventListener('click', handleAddCityInFavourites);
@@ -28,6 +30,7 @@ elements.form.addEventListener('submit', (e) => {
     const inputValue = elements.inputCity.value.replace(/\s/g, "");
     changeWeatherAndCityInDOM(inputValue);
     changeTimeOfValueAndTemperature(inputValue);
+    saveToLocalStorageMainCity(inputValue);
     elements.form.reset();
 });
 
