@@ -363,7 +363,7 @@ body {
   .locations__list {
     padding-left: 10%;
     overflow-y: auto;
-    height: 150px;
+    height: 130px;
   }
 }
 .locations__list-item {

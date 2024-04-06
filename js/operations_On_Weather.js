@@ -3,10 +3,10 @@ import { getResponseFromServer, getValueOfTimeFromServer } from "./request.js";
 
 export let dataUI = [];
 
-export function renderHistory(list) {
+export function renderHistory(list, data = dataUI) {
     list.innerHTML = "";
 
-    dataUI.forEach(city => {
+    data.forEach(city => {
         const newElem = document.createElement('li');
         newElem.classList.add('locations__list-item');
         newElem.innerHTML = `
