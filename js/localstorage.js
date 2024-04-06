@@ -26,6 +26,7 @@ export function saveToLocalStorageMainCity(city) {
 if (cityInLocalStorage === null) {
     saveToLocalStorageMainCity(elements.city.textContent); //изначально LocalStorage пустой
 } else {
+    saveToLocalStorageMainCity(elements.city.textContent);
     changeWeatherAndCityInDOM(cityInLocalStorage); //вызываем сохраненный город из LocalStorage
     changeTimeOfValueAndTemperature(cityInLocalStorage);
 }
