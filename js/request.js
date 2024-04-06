@@ -23,8 +23,7 @@ export function getResponseFromServer(nameCity) {
             if (response.ok) {
                 hideElement(elements.elementError);
                 return response.json();
-            }
-            if (response.status === 404) {
+            } else {
                 throw new Error("Не найдено");
             }
         })
@@ -47,8 +46,7 @@ export function getValueOfTimeFromServer(nameCity) {
             if (response.ok) {
                 hideElement(elements.elementError);
                 return response.json();
-            }
-            if (response.status === 404) {
+            } else {
                 throw new Error("Не найдено");
             }
         })

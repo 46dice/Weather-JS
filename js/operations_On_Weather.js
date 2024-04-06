@@ -28,7 +28,10 @@ export function changeWeatherAndCityInDOM(city) {
         const image = data.weather[0].icon;
         const imageURL = `https://openweathermap.org/img/wn/${image}@4x.png`
         elements.image.src = imageURL;
-    });
+        throw new Error();
+    }).catch(error => {
+        console.log(error);
+    })
 }
 
 export function changeTempAndDateInUI(i, data, element) {
@@ -72,6 +75,10 @@ export function changeTimeOfValueAndTemperature(city) {
         changeTempAndDateInUI(1, data, elements.timeElements.firstList);
         changeTempAndDateInUI(2, data, elements.timeElements.secondList);
         changeTempAndDateInUI(3, data, elements.timeElements.thirdList);
+
+        throw new Error();
+    }).catch(error => {
+        console.log(error);
     })
 }
 
