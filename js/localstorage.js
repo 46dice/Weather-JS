@@ -16,7 +16,7 @@ export function deleteFavoriteCityInLocalStorage(city) {
     const favoriteCityes = JSON.parse(localStorage.favoriteCityes);
     const index = favoriteCityes.findIndex(item => item === city);
     favoriteCityes.splice(index, 1);
-    localStorage.setItem('favoriteCityes', JSON.stringify(favoriteCityes))
+    localStorage.setItem('favoriteCityes', JSON.stringify(favoriteCityes));
 }
 
 export function saveToLocalStorageMainCity(city) {
@@ -26,7 +26,8 @@ export function saveToLocalStorageMainCity(city) {
 if (cityInLocalStorage === null) {
     saveToLocalStorageMainCity(elements.city.textContent); //изначально LocalStorage пустой
 } else {
-    saveToLocalStorageMainCity(elements.city.textContent);
+    const city = JSON.stringify(elements.city.textContent);
+    saveToLocalStorageMainCity(city);
     changeWeatherAndCityInDOM(cityInLocalStorage); //вызываем сохраненный город из LocalStorage
     changeTimeOfValueAndTemperature(cityInLocalStorage);
 }
