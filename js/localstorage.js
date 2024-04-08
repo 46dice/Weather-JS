@@ -4,6 +4,14 @@ import { changeWeatherAndCityInDOM, changeTimeOfValueAndTemperature, dataUI, ren
 const cityInLocalStorage = localStorage.getItem('city');
 const listFavoriteCityes = JSON.parse(localStorage.getItem('favoriteCityes'));
 
+const localstorageBtn = document.querySelector('.localStorage');
+if (localstorageBtn) {
+    localstorageBtn.addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
+    });
+}
+
 export function saveToLocalStorageFavoriteCityes(list) {
     const string = JSON.stringify(list);
     const checkToCityInData = list.includes(string);
@@ -20,17 +28,19 @@ export function deleteFavoriteCityInLocalStorage(city) {
 }
 
 export function saveToLocalStorageMainCity(city) {
-    localStorage.setItem('city', city);
+    localStorage.setItem('city', JSON.stringify(city));
 }
 
 if (cityInLocalStorage === null) {
     saveToLocalStorageMainCity(elements.city.textContent); //изначально LocalStorage пустой
+    changeWeatherAndCityInDOM(elements.city.textContent); //вызываем сохраненный город из LocalStorage
+    changeTimeOfValueAndTemperature(elements.city.textContent);
 } else {
-    const cityJSONString = JSON.stringify(elements.city.textContent);
-    const cityJSONParse = JSON.parse(cityJSONString);
-    saveToLocalStorageMainCity(cityJSONString);
-    changeWeatherAndCityInDOM(cityJSONParse); //вызываем сохраненный город из LocalStorage
-    changeTimeOfValueAndTemperature(cityJSONParse);
+    const parseToCityInLocalStorage = JSON.parse(cityInLocalStorage);
+    elements.city.textContent = parseToCityInLocalStorage;
+    saveToLocalStorageMainCity(elements.city.textContent);
+    changeWeatherAndCityInDOM(parseToCityInLocalStorage); //вызываем сохраненный город из LocalStorage
+    changeTimeOfValueAndTemperature(parseToCityInLocalStorage);
 }
 
 if (listFavoriteCityes === null) {

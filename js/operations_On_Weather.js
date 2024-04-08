@@ -89,11 +89,12 @@ export function deleteCityInFavourites(city) {
 }
 
 export function addCityInFavourites(city) {
-    const checkCityInDataUI = dataUI.includes(city.textContent);
-    if (checkCityInDataUI) return
-
     const newData = [];
     newData.push(city.textContent);
     dataUI.push(...newData);
+
+    const set = new Set(dataUI);
+    const filteredDataUI = Array.from(set);
+    dataUI = filteredDataUI;
     renderHistory(elements.locationsList);
 }

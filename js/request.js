@@ -16,7 +16,7 @@ export function getResponseFromServer(nameCity) {
     const url = `${serverUrl}weather?q=${nameCity}&appid=${apiKey}&lang=ru&units=metric`;
 
     showElement(elements.elementError);
-    elements.elementError.textContent = "Ищу город...";
+    elements.elementError.textContent = "Обновляю ваш город...";
 
     return fetch(url)
         .then(response => {
