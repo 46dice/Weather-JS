@@ -26,10 +26,11 @@ export function saveToLocalStorageMainCity(city) {
 if (cityInLocalStorage === null) {
     saveToLocalStorageMainCity(elements.city.textContent); //изначально LocalStorage пустой
 } else {
-    const city = JSON.stringify(elements.city.textContent);
-    saveToLocalStorageMainCity(city);
-    changeWeatherAndCityInDOM(cityInLocalStorage); //вызываем сохраненный город из LocalStorage
-    changeTimeOfValueAndTemperature(cityInLocalStorage);
+    const cityJSONString = JSON.stringify(elements.city.textContent);
+    const cityJSONParse = JSON.parse(cityJSONString);
+    saveToLocalStorageMainCity(cityJSONString);
+    changeWeatherAndCityInDOM(cityJSONParse); //вызываем сохраненный город из LocalStorage
+    changeTimeOfValueAndTemperature(cityJSONParse);
 }
 
 if (listFavoriteCityes === null) {
