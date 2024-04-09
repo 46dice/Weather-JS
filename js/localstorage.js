@@ -1,5 +1,5 @@
 import { elements } from "./elementsUI.js";
-import { changeWeatherAndCityInDOM, changeTimeOfValueAndTemperature, dataUI, renderHistory } from "./operations_On_Weather.js";
+import { changeValuesInMainCity, changeValuesInExtraElementsInUi, dataUI, renderHistory } from "./operations_On_Weather.js";
 
 const cityInLocalStorage = localStorage.getItem('city');
 const listFavoriteCityes = JSON.parse(localStorage.getItem('favoriteCityes'));
@@ -12,7 +12,7 @@ if (localstorageBtn) {
     });
 }
 
-export function saveToLocalStorageFavoriteCityes(list) {
+export function saveToLocalStorageFavoriteCites(list) {
     const string = JSON.stringify(list);
     const checkToCityInData = list.includes(string);
     if (checkToCityInData) return
@@ -33,19 +33,19 @@ export function saveToLocalStorageMainCity(city) {
 
 if (cityInLocalStorage === null) {
     saveToLocalStorageMainCity(elements.city.textContent); //изначально LocalStorage пустой
-    changeWeatherAndCityInDOM(elements.city.textContent); //вызываем сохраненный город из LocalStorage
-    changeTimeOfValueAndTemperature(elements.city.textContent);
+    changeValuesInMainCity(elements.city.textContent); //вызываем сохраненный город из LocalStorage
+    changeValuesInExtraElementsInUi(elements.city.textContent);
 } else {
     const parseToCityInLocalStorage = JSON.parse(cityInLocalStorage);
     elements.city.textContent = parseToCityInLocalStorage;
     saveToLocalStorageMainCity(elements.city.textContent);
-    changeWeatherAndCityInDOM(parseToCityInLocalStorage); //вызываем сохраненный город из LocalStorage
-    changeTimeOfValueAndTemperature(parseToCityInLocalStorage);
+    changeValuesInMainCity(parseToCityInLocalStorage); //вызываем сохраненный город из LocalStorage
+    changeValuesInExtraElementsInUi(parseToCityInLocalStorage);
 }
 
 if (listFavoriteCityes === null) {
     const newData = ["Екатеринбург", "Советский"];
-    saveToLocalStorageFavoriteCityes(newData);
+    saveToLocalStorageFavoriteCites(newData);
     renderHistory(elements.locationsList, newData);
 } else {
     dataUI.push(...listFavoriteCityes);

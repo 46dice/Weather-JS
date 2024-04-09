@@ -12,52 +12,38 @@ function hideElement(elem) {
     elem.classList.add('visibility-hide');
 }
 
-export function getResponseFromServer(nameCity) {
+async function checkResponse(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Не найдено");
+
+        hideElement(elements.elementError);
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        const elementError = document.querySelector('.error');
+        showElement(elements.elementError);
+        elementError.textContent = `${error}`;
+
+        setTimeout(() => {
+            hideElement(elements.elementError);
+        }, 4000); //через 4 сек убирает сообщение об ошибке
+    }
+}
+
+export async function getWeatherFromServerMain(nameCity) {
     const url = `${serverUrl}weather?q=${nameCity}&appid=${apiKey}&lang=ru&units=metric`;
 
     showElement(elements.elementError);
     elements.elementError.textContent = "Обновляю ваш город...";
 
-    return fetch(url)
-        .then(response => {
-            if (response.ok) {
-                hideElement(elements.elementError);
-                return response.json();
-            } else {
-                throw new Error("Не найдено");
-            }
-        })
-        .catch(error => {
-            const elementError = document.querySelector('.error');
-            showElement(elements.elementError);
-            elementError.textContent = `${error}`;
-
-            setTimeout(() => {
-                hideElement(elements.elementError);
-            }, 4000); //через 4 сек убирает сообщение об ошибке
-        })
+    return await checkResponse(url);
 }
 
-export function getValueOfTimeFromServer(nameCity) {
+export async function getTimestampAndWeatherFromServerForecast(nameCity) {
     const url = `${serverUrl}forecast?q=${nameCity}&appid=${apiKey}&lang=ru&units=metric`;
 
-    return fetch(url)
-        .then(response => {
-            if (response.ok) {
-                hideElement(elements.elementError);
-                return response.json();
-            } else {
-                throw new Error("Не найдено");
-            }
-        })
-        .catch(error => {
-            const elementError = document.querySelector('.error');
-            showElement(elements.elementError);
-            elementError.textContent = `${error}`;
-
-            setTimeout(() => {
-                hideElement(elements.elementError);
-            }, 4000); //через 4 сек убирает сообщение об ошибке
-        })
+    return await checkResponse(url);
 }
 
